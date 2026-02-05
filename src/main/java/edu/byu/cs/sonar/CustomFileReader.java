@@ -2,7 +2,6 @@ package edu.byu.cs.sonar;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -15,7 +14,7 @@ class CustomFileReader {
     /**
      * The path to the file being scanned
      */
-    private String path;
+    private final String path;
 
     /**
      * The sentence that will be constructed
@@ -26,13 +25,6 @@ class CustomFileReader {
      */
     private int count;
 
-    private Scanner createScanner() throws FileNotFoundException {
-        return new Scanner(new InputStreamReader(
-                new FileInputStream(path),
-                StandardCharsets.UTF_8
-        ));
-    }
-
     /**
      * Constructor for our class
      *
@@ -42,6 +34,13 @@ class CustomFileReader {
         path = fileName;
         newSentence = "";
         count = 0;
+    }
+
+    private Scanner createScanner() throws FileNotFoundException {
+        return new Scanner(new InputStreamReader(
+            new FileInputStream(path),
+            StandardCharsets.UTF_8
+        ));
     }
 
     /**
@@ -74,6 +73,7 @@ class CustomFileReader {
                 returnWord=s.next();
             }
         }
+
         return returnWord;
     }
 
@@ -157,6 +157,10 @@ class CustomFileReader {
      */
     @Override
     public boolean equals(final Object object) {
+        if (object == null) {
+            return false;
+        }
+
         if (object.getClass() != this.getClass()) {
             return false;
         }

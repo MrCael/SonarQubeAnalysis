@@ -22,6 +22,14 @@ class CustomFileReaderTest {
     }
 
     @Test
+    void testHowManyWordsInFile_error() {
+        assertThrows(FileNotFoundException.class, () -> {
+          CustomFileReader sud = new CustomFileReader("readMe4.txt");
+          sud.howManyWordsInFile();
+        });
+    }
+
+    @Test
     void testReturnThatWord() throws FileNotFoundException {
         assertEquals("I", sut.returnThatWord(1), "The first word should be I in readMe1.txt");
     }
