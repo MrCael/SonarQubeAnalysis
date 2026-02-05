@@ -6,7 +6,7 @@ package edu.byu.cs.sonar;
  * a few extra getters, and the use of a String instead of a List
  * for our sentence we create.
  */
-class Main { // This comment is for the purpose of testing I have set up my project correctly
+class Main {
     /**
      * This program will take four arguments.
      * Program arguments should be arg[0] readMe1.txt, arg[1] readMe2.txt,
