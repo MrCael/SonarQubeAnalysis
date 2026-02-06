@@ -39,6 +39,7 @@ class Main {
             System.out.println(reader1.getNewSentence());
         } catch (FileNotFoundException e) {
           System.err.println("Did not find dictionary file. " + e.getMessage());
+          System.out.println(e.getMessage());
         }
     }
 }

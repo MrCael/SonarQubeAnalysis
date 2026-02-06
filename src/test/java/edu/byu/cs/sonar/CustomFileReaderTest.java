@@ -38,9 +38,40 @@ class CustomFileReaderTest {
     }
 
     @Test
-    void setNewSentence() {
+    void testSetNewSentence() {
         String betterSentence = "New Sentence.";
         sut.setNewSentence(betterSentence);
         assertEquals(betterSentence, sut.getNewSentence());
+    }
+
+    @Test
+    void testEquals_negative_nullObject() {
+        boolean actual = sut == null;
+        assertFalse(actual);
+    }
+
+    @Test
+    void testEquals_negative_differentSentence() {
+        CustomFileReader other = new CustomFileReader("readMe1.txt");
+        other.setNewSentence("This is my new sentence");
+
+        assertNotEquals(sut, other);
+    }
+
+    @Test
+    void testEquals_negative_differentCount() throws FileNotFoundException {
+        CustomFileReader other = new CustomFileReader("readMe1.txt");
+
+        sut.howManyWordsInFile();
+
+        other.count = 5;
+        other.howManyWordsInFile();
+
+        assertNotEquals(sut, other);
+    }
+
+    @Test
+    void testEquals_positive() {
+        assertEquals(new CustomFileReader("readMe1.txt"), sut);
     }
 }

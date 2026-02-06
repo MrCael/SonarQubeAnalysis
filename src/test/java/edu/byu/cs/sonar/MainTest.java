@@ -13,16 +13,20 @@ import java.io.PrintStream;
 class MainTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
 
     @BeforeEach
     void setUpStreams() {
         System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
     }
 
     @AfterEach
     void cleanUpStreams() {
         System.setOut(originalOut);
+        System.setErr(originalErr);
     }
 
     @Test
@@ -40,5 +44,15 @@ class MainTest {
       Main.main(args);
 
       assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    void testMain_testError() {
+      String[] args = {"readMe5.txt", "readMe2.txt", "readMe3.txt", "5"};
+      String expected = "Did not find dictionary file. readMe5.txt (No such file or directory)\n";
+
+      Main.main(args);
+
+      assertEquals(expected, errContent.toString());
     }
 }

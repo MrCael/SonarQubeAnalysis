@@ -10,6 +10,7 @@ import java.util.Scanner;
 /**
  * This is a class that will handle the file reading
  */
+@SuppressWarnings({"squid:S106"})
 class CustomFileReader {
     /**
      * The path to the file being scanned
@@ -23,7 +24,7 @@ class CustomFileReader {
     /**
      * The number of words read in by the scanner
      */
-    private int count;
+    int count;
 
     /**
      * Constructor for our class
