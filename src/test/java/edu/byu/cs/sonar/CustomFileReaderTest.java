@@ -45,12 +45,6 @@ class CustomFileReaderTest {
     }
 
     @Test
-    void testEquals_negative_nullObject() {
-        boolean actual = sut == null;
-        assertFalse(actual);
-    }
-
-    @Test
     void testEquals_negative_differentSentence() {
         CustomFileReader other = new CustomFileReader("readMe1.txt");
         other.setNewSentence("This is my new sentence");
